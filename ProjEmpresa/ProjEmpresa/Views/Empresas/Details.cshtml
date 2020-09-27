@@ -1,0 +1,50 @@
+﻿@model ProjEmpresa.Models.Empresa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Empresa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataAbertura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataAbertura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.atividade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.atividade)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idEmpresa }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
