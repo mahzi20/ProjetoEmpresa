@@ -4,24 +4,21 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Lista de Empresas</h2>
+<br />
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.cnpj)
+            CNPJ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nome)
+            Nome da Empresa
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dataAbertura)
+            Data de Abertura
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.atividade)
+            Atividades
         </th>
         <th></th>
     </tr>
@@ -41,9 +38,8 @@
             @Html.DisplayFor(modelItem => item.atividade)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idEmpresa }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idEmpresa }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idEmpresa })
+            @Html.ActionLink("Atualizar dados", "Edit", new { id=item.idEmpresa }) |
+            @Html.ActionLink("Deletar empresa", "Delete", new { id=item.idEmpresa })
         </td>
     </tr>
 }

@@ -13,7 +13,7 @@ namespace ProjEmpresa.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Create()
         {
             ViewBag.Message = "Your application description page.";
 

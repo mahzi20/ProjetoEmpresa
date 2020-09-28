@@ -10,6 +10,8 @@ namespace ProjEmpresa.Models
     {
         [Key]
         public int idEmpresa { get; set; }
+        [Required(ErrorMessage = "O CNPJ é obrigatório!")]
+        [RegularExpression(@"^\d{14}$", ErrorMessage = "O CNPJ só pode conter números e deve conter 14 dígitos")]
         public string cnpj { get; set; }
         public string nome { get; set; }
         [DataType(DataType.Date)]

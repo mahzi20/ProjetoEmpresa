@@ -3,22 +3,26 @@
 @{
     ViewBag.Title = "Create";
 }
+<script src="~/JqueryFiles/jquery.maskedinput-1.3.1.min_.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<h2>Create</h2>
+<h2>Incluir Empresa</h2>
 
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Empresa</h4>
+        <h4>Digite o número do CNPJ para buscar os dados na Receita Federal</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.cnpj, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("CNPJ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.cnpj, new { htmlAttributes = new { @class = "form-control" } })
+                @* input required", Name = "cnpj", @id = "cnpj*@
                 @Html.ValidationMessageFor(model => model.cnpj, "", new { @class = "text-danger" })
                 <br />
                 <a href="#" onclick="BuscarCnpj();" class="btn btn-default">Buscar CNPJ</a>
@@ -26,15 +30,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Nome da Empresa", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.dataAbertura, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Data de Abertura", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.dataAbertura, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.dataAbertura, "", new { @class = "text-danger" })
@@ -42,25 +46,29 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.atividade, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Atividade Principal", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.atividade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.atividade, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.atividade, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @*<script>
+            $(document).ready(function () {
+
+                $("#cnpj").inputmask("mask", { "mask": "99.999.999/9999-99" }, { reverse: true });
+            });
+        </script>*@
 }
+
