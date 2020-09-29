@@ -23,7 +23,11 @@
             @Html.EditorFor(model => model.cnpj, new { htmlAttributes = new { @class = "form-control input required", Name = "cnpj", @id = "cnpj", @disabled = "disabled" } })
             @Html.ValidationMessageFor(model => model.cnpj, "", new { @class = "text-danger" })
             <br />
-            <a href="#" onclick="BuscarCnpj();" class="btn btn-default">Buscar CNPJ</a>
+            @using (Html.BeginForm("BuscarCNPJAPI", "Controllers", FormMethod.Get))
+            {
+                <button type="submit" name="botao1" id="botao1">Ir para Action</button>
+            }
+            @*<a href="#" onclick="BuscarCnpj();" class="btn btn-default">Buscar CNPJ</a>*@
         </div>
     </div>
 

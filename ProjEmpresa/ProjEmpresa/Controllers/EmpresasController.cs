@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ProjEmpresa.Dao;
 using ProjEmpresa.Models;
+using RestSharp;
 
 namespace ProjEmpresa.Controllers
 {
@@ -55,6 +56,18 @@ namespace ProjEmpresa.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            /* TESTAR CONSULTA ANTES DE INCLUIR OS DADOS
+             * Empresa empresa2 = db.Empresas.Find(empresa.cnpj);
+                if (empresa2 == null)
+                {
+                    db.Empresas.Add(empresa);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                    Console.Write("Epresa já cadastrada");
+             */
 
             return View(empresa);
         }

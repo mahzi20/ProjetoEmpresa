@@ -21,18 +21,21 @@
         <div class="form-group">
             @Html.Label("CNPJ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cnpj, new { htmlAttributes = new { @class = "form-control" } })
-                @* input required", Name = "cnpj", @id = "cnpj*@
+                @*@Html.EditorFor(model => model.cnpj, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                <input type="text" , id="cnpj" name="cnpj" class="form-control" value="" onkeypress="return onlynumber();" maxlength="14" />
+                <br />
+                <input type="button" value="Consultar CNPJ" id="consultacnpj" class="btn btn-default" />
                 @Html.ValidationMessageFor(model => model.cnpj, "", new { @class = "text-danger" })
                 <br />
-                <a href="#" onclick="BuscarCnpj();" class="btn btn-default">Buscar CNPJ</a>
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Nome da Empresa", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                <input type="text" , id="nome" name="nome" class="form-control" value="" readonly="readonly" />
+                @*@Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })*@
                 @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,7 +43,8 @@
         <div class="form-group">
             @Html.Label("Data de Abertura", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dataAbertura, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="text" , id="dataAbertura" name="dataAbertura" class="form-control" value="" readonly="readonly" />
+                @*@Html.EditorFor(model => model.dataAbertura, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.dataAbertura, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,7 +52,8 @@
         <div class="form-group">
             @Html.Label("Atividade Principal", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.atividade, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                <input type="text" , id="atividade" name="atividade" class="form-control" value="" readonly="readonly" />
+                @*@Html.EditorFor(model => model.atividade, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })*@
                 @Html.ValidationMessageFor(model => model.atividade, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -64,11 +69,8 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @*<script>
-            $(document).ready(function () {
+    @Scripts.Render("~/Scripts/cnpj.js")
+    @Scripts.Render("~/Scripts/apenasnumeros.js")
 
-                $("#cnpj").inputmask("mask", { "mask": "99.999.999/9999-99" }, { reverse: true });
-            });
-        </script>*@
 }
 
