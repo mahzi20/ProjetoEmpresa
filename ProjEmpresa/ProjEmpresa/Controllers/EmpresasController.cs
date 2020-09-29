@@ -30,8 +30,7 @@ namespace ProjEmpresa.Controllers
 
                 return View(empresa.ToList());
             }
-                return View(db.Empresas.ToList());
-
+            return View(db.Empresas.ToList());
         }
 
 
@@ -74,28 +73,15 @@ namespace ProjEmpresa.Controllers
                     {
                         db.Empresas.Add(empresa);
                         db.SaveChanges();
-                        return RedirectToAction("Index");
+                        ViewBag.message = "Empresa cadastrada com sucesso";
                     }
                     else
                     {
-                        MessageBox.Show("Empresa já cadastrada");
+                        ViewBag.message = "Erro! Empresa ja cadastrada";
                     }
 
                 }
             }
-
-            /* TESTAR CONSULTA ANTES DE INCLUIR OS DADOS
-             * Empresa empresa2 = db.Empresas.Find(empresa.cnpj);
-                if (empresa2 == null)
-                {
-                    db.Empresas.Add(empresa);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                else
-                    Console.Write("Epresa já cadastrada");
-             */
-
             return View(empresa);
         }
 

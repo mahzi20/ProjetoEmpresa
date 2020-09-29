@@ -9,11 +9,12 @@
 @using (Html.BeginForm())
 {
 <p>
-    Procure a empresa por nome ou CNPJ (apenas números):
+    @Html.Label("Procure a empresa por nome ou CNPJ (apenas números):")
     <br />
-    @Html.TextBox("SearchString")
     <br />
-    <input type="submit" value="Search" class="btn btn-default" />
+    <input type="text" , id="SearchString" name="SearchString" class="form-control" PlaceHolder="CNPJ ou NOME" />
+    <br />
+    <input type="submit" value="Buscar Empresa" class="btn btn-default" />
 </p>
 }
 <table class="table">

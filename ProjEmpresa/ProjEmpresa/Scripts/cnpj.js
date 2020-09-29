@@ -1,11 +1,15 @@
 ﻿jQuery(function ($) {
     $("input[id='consultacnpj']").click(function () {
+        
+        $("input[name='nome']").val("");
+        $("input[name='dataAbertura']").val("");
+        $("input[name='atividade']").val("");
+
         var cnpj_num = $('#cnpj').val();
         if (cnpj_num.length <= 13) {
             alert("O CNPJ precisa conter 14 números")
             return
         }
-
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -18,11 +22,12 @@
 
         $.ajax(settings).done(function (result) {
             if (result.error != null) {
-                alert(result.message || "Encontramos um erro na pesquisa")
+                alert(result.message || "Encontramos um erro na pesquisa");
             }
-            $("input[name='nome']").val(result.name)
-            $("input[name='dataAbertura']").val(result.founded)
-            $("input[name='atividade']").val(result.primary_activity.description)
+            $("input[name='nome']").val(result.name);
+            $("input[name='dataAbertura']").val(result.founded);
+            $("input[name='atividade']").val(result.primary_activity.description);
+            $(":submit").removeAttr("disabled");
             console.log(result);
         });
 
