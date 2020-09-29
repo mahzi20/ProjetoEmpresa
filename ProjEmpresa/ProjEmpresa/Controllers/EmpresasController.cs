@@ -4,8 +4,10 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows;
 using ProjEmpresa.Dao;
 using ProjEmpresa.Models;
 using RestSharp;
@@ -17,10 +19,21 @@ namespace ProjEmpresa.Controllers
         private EFContext db = new EFContext();
 
         // GET: Empresas
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Empresas.ToList());
+            var empresa = from s in db.Empresas
+                          select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                empresa = empresa.Where(s => s.nome.Contains(searchString)
+                                       || s.cnpj == (searchString));
+
+                return View(empresa.ToList());
+            }
+                return View(db.Empresas.ToList());
+
         }
+
 
         // GET: Empresas/Details/5
         public ActionResult Details(int? id)
@@ -48,13 +61,27 @@ namespace ProjEmpresa.Controllers
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idEmpresa,cnpj,nome,dataAbertura,atividade")] Empresa empresa)
+        public ActionResult Create(string cnpj, [Bind(Include = "idEmpresa,cnpj,nome,dataAbertura,atividade")] Empresa empresa)
         {
             if (ModelState.IsValid)
             {
-                db.Empresas.Add(empresa);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var consempresa = from s in db.Empresas
+                              select s;
+                if (!String.IsNullOrEmpty(cnpj))
+                {
+                    consempresa = consempresa.Where(s => s.cnpj == (cnpj));
+                    if (consempresa.Count() == 0)
+                    {
+                        db.Empresas.Add(empresa);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Empresa já cadastrada");
+                    }
+
+                }
             }
 
             /* TESTAR CONSULTA ANTES DE INCLUIR OS DADOS

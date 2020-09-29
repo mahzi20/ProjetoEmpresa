@@ -17,5 +17,6 @@ namespace ProjEmpresa.Models
         [DataType(DataType.Date)]
         public DateTime dataAbertura { get; set; }
         public string atividade { get; set; }
+
     }
 }

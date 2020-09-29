@@ -1,7 +1,7 @@
 ﻿jQuery(function ($) {
     $("input[id='consultacnpj']").click(function () {
         var cnpj_num = $('#cnpj').val();
-        if (cnpj_num.lenght <= 17) {
+        if (cnpj_num.length <= 13) {
             alert("O CNPJ precisa conter 14 números")
             return
         }
@@ -16,11 +16,18 @@
             }
         }
 
-        $.ajax(settings).done(function (response) {
-            $("input[name='nome']").val(response.name)
-            $("input[name='dataAbertura']").val(response.founded)
-            $("input[name='atividade']").val(response.primary_activity.description)
-            console.log(response);
+        $.ajax(settings).done(function (result) {
+            if (result.error != null) {
+                alert(result.message || "Encontramos um erro na pesquisa")
+            }
+            $("input[name='nome']").val(result.name)
+            $("input[name='dataAbertura']").val(result.founded)
+            $("input[name='atividade']").val(result.primary_activity.description)
+            console.log(result);
         });
+
+        $.ajax(settings).fail(function () {
+            alert("CNPJ não encontrado, tente novamente");
+        })
     });
 });

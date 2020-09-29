@@ -6,6 +6,16 @@
 
 <h2>Lista de Empresas</h2>
 <br />
+@using (Html.BeginForm())
+{
+<p>
+    Procure a empresa por nome ou CNPJ (apenas números):
+    <br />
+    @Html.TextBox("SearchString")
+    <br />
+    <input type="submit" value="Search" class="btn btn-default" />
+</p>
+}
 <table class="table">
     <tr>
         <th>
@@ -23,25 +33,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.cnpj)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataAbertura)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.atividade)
-        </td>
-        <td>
-            @Html.ActionLink("Atualizar dados", "Edit", new { id=item.idEmpresa }) |
-            @Html.ActionLink("Deletar empresa", "Delete", new { id=item.idEmpresa })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cnpj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataAbertura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.atividade)
+            </td>
+            <td>
+                @Html.ActionLink("Deletar empresa", "Delete", new { id = item.idEmpresa })
+            </td>
+        </tr>
+    }
 
 </table>
