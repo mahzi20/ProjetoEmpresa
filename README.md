@@ -1,5 +1,4 @@
 # ProjetoEmpresa
-Uppertools
 
 # Plataforma integrada
 
